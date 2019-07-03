@@ -14,16 +14,22 @@ class Index extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      term: '',
+      text: '',
       items: [],
     }
   }
 
+  onChange = event => {
+    this.setState({ text: event.target.value })
+  }
+
   onSubmit = event => {
+    console.log(event)
+    console.log(this.state)
     event.preventDefault()
     this.setState({
-      term: '',
-      items: [...this.state.items, this.state.term],
+      text: '',
+      items: [...this.state.items, this.state.text],
     })
   }
 
@@ -32,7 +38,7 @@ class Index extends React.Component {
       <div>
         <List items={this.state.items} />
         <form className="App" onSubmit={this.onSubmit}>
-          <input value={this.state.term} onChange={this.onChange} />
+          <input value={this.state.text} onChange={this.onChange} />
           <button>Submit</button>
         </form>{' '}
       </div>
